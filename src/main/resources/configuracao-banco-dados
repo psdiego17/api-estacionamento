@@ -1,0 +1,22 @@
+create database db_estacionamento;
+
+use db_estacionamento;
+
+create table estacionamento (
+	id binary(16) not null primary key, /*UUID não usa auto increment*/
+	numero_vaga varchar(8) not null,
+	placa_carro varchar(7) not null,
+	marca_carro varchar(20) not null,
+	modelo_carro varchar(20) not null,
+	cor_carro varchar(20) not null,
+	data_registro datetime not null,
+	nome_propietario varchar(50) not null,
+	apartamento_propietario varchar(8) not null,
+	bloco_propietario varchar(20) not null
+)
+
+select * from estacionamento;
+
+insert into estacionamento (id, numero_vaga, placa_carro, marca_carro, modelo_carro, cor_carro,
+data_registro, nome_propietario, apartamento_propietario, bloco_propietario) values
+(UUID_TO_BIN(UUID()), "001", "J2022UL", "Fiat", "Palio Atractive", "Branco", "2022-07-09 16:51:00", "João dos Santos", "001", "1")
