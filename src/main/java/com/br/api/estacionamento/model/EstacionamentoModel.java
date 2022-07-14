@@ -1,14 +1,18 @@
-package controller;
+package com.br.api.estacionamento.model;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.UUID;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "estacionamento")
 public class EstacionamentoModel implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
@@ -28,13 +32,11 @@ public class EstacionamentoModel implements Serializable {
 	
 	
 	public EstacionamentoModel() {
-		super();
 	}
 	
 	public EstacionamentoModel(UUID id, String numeroVaga, String placaCarro, String marcaCarro, String modeloCarro,
 			String corCarro, LocalDateTime dataRegistro, String nomePropietario, String apartamentoPropietario,
 			String blocoPropietario) {
-		super();
 		this.id = id;
 		this.numeroVaga = numeroVaga;
 		this.placaCarro = placaCarro;
@@ -132,6 +134,4 @@ public class EstacionamentoModel implements Serializable {
 		EstacionamentoModel other = (EstacionamentoModel) obj;
 		return Objects.equals(id, other.id);
 	}
-	
-	
 }
