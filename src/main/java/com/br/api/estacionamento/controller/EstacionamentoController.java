@@ -15,39 +15,47 @@ import org.springframework.web.bind.annotation.RestController;
 import com.br.api.estacionamento.model.EstacionamentoModel;
 import com.br.api.estacionamento.services.EstacionamentoService;
 
-
-
 @RestController
-@RequestMapping("/estacionamento")
+@RequestMapping("/api")
 public class EstacionamentoController {
-	
-	//Forma de criar injeção depedência, precisa criar o contrutor.
+
+	// Forma de criar injeção depedência, precisa criar o contrutor.
 	final EstacionamentoService estacionamentoService;
-	
+
 	@Autowired
 	public EstacionamentoController(EstacionamentoService estacionamentoService) {
 		this.estacionamentoService = estacionamentoService;
 	}
 
-	
-	@GetMapping("/todos")
-	public ResponseEntity<List<EstacionamentoModel>> buscarTodosController(){
-		
+	@GetMapping("/vagas-em-uso")
+	public ResponseEntity<List<EstacionamentoModel>> buscarTodosController() {
+
 		return ResponseEntity.status(HttpStatus.OK).body(estacionamentoService.buscarTodosService());
 	}
-	
-	
+
 	@GetMapping("/{id}")
-	public ResponseEntity<Object> buscarPeloIdController(@PathVariable(value = "id") UUID id){
-		
+	public ResponseEntity<Object> buscarPeloIdController(@PathVariable(value = "id") UUID id) {
+
 		Optional<EstacionamentoModel> estacionamentoModelOptional = estacionamentoService.buscarPeloIdService(id);
-		
-		if(!estacionamentoModelOptional.isPresent()) {
-			
+
+		if (!estacionamentoModelOptional.isPresent()) {
+
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Vaga Não localizada!");
 		}
-		
+
+		return ResponseEntity.status(HttpStatus.OK).body(estacionamentoModelOptional.get());
+	}
+	
+	@GetMapping("/nome/{nomePropietario}")
+	public ResponseEntity<Object> buscarPeloNomeController(@PathVariable(value = "nomePropietario") String nomePropietario) {
+
+		Optional<EstacionamentoModel> estacionamentoModelOptional = estacionamentoService.buscarPeloNomeService(nomePropietario);
+
+		if (!estacionamentoModelOptional.isPresent()) {
+
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Morador não localizado!");
+		}
+
 		return ResponseEntity.status(HttpStatus.OK).body(estacionamentoModelOptional.get());
 	}
 }
-

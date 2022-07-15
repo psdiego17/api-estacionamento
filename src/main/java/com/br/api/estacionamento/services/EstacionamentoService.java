@@ -19,8 +19,8 @@ public class EstacionamentoService {
 	@Autowired
 	public EstacionamentoService(EstacionamentoRepository estacionamentoRepository) {
 		this.estacionamentoRepository = estacionamentoRepository;
+	
 	}
-
 	
 	//Buscar todos no banco de dados
 	public List<EstacionamentoModel> buscarTodosService(){
@@ -34,6 +34,9 @@ public class EstacionamentoService {
 		return estacionamentoRepository.findById(id);
 	}
 	
-	
+	public Optional<EstacionamentoModel> buscarPeloNomeService(String nomePropietario) {
+
+		return Optional.ofNullable(estacionamentoRepository.findByNomePropietario(nomePropietario));
+	}
 	
 }

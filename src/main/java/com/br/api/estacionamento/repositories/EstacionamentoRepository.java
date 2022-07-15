@@ -9,5 +9,6 @@ import com.br.api.estacionamento.model.EstacionamentoModel;
 
 @Repository
 public interface EstacionamentoRepository extends JpaRepository<EstacionamentoModel, UUID>{
-
+	
+	EstacionamentoModel findByNomePropietario(String nomePropietario);
 }
