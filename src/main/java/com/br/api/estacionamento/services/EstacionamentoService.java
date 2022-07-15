@@ -1,6 +1,8 @@
 package com.br.api.estacionamento.services;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,4 +26,14 @@ public class EstacionamentoService {
 	public List<EstacionamentoModel> buscarTodosService(){
 		return estacionamentoRepository.findAll();
 	}
+
+	
+	//Buscar um contato pelo ID
+	public Optional<EstacionamentoModel> buscarPeloIdService(UUID id) {
+
+		return estacionamentoRepository.findById(id);
+	}
+	
+	
+	
 }
