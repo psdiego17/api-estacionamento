@@ -3,11 +3,8 @@ package com.br.api.estacionamento.services;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-
 import javax.transaction.Transactional;
-
 import org.springframework.stereotype.Service;
-
 import com.br.api.estacionamento.model.EstacionamentoModel;
 import com.br.api.estacionamento.repositories.EstacionamentoRepository;
 
@@ -44,7 +41,8 @@ public class EstacionamentoService {
 
 		return estacionamentoRepository.save(estacionamentoModel);
 	}
-
+	
+	 
 	/*
 	 * public boolean existsByPlaca(String placaCarro) {
 	 * 
@@ -61,6 +59,7 @@ public class EstacionamentoService {
 	 * estacionamentoRepository.existsByApartamentBloco(apartamentoPropietario,
 	 * blocoPropietario); }
 	 */
+	
 
 	// Deletar um contato
 	@Transactional
@@ -70,6 +69,5 @@ public class EstacionamentoService {
 
 	public Optional<EstacionamentoModel> findById(UUID id) {
 		return estacionamentoRepository.findById(id);
-	}
-
+	}	
 }
